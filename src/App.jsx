@@ -1,28 +1,30 @@
-import AboutUs from "./components/AboutUs";
-import About from "./components/AboutUs";
-import Contact from "./components/Contact";
-import Dishes from "./components/Dishes";
-import Expertise from "./components/Expertise";
-import Footer from "./components/Footer";
-import HeroSection from "./components/HeroSection";
-import Mission from "./components/Mission";
+import { lazy, Suspense } from "react";
 import Navbar from "./components/Navbar";
-import Review from "./components/Review";
-import { FaFacebook } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import Footer from "./components/Footer";
+import Loader from "./components/Loader";
+
+const HeroSection = lazy(() => import("./components/HeroSection"));
+const Dishes = lazy(() => import("./components/Dishes"));
+const AboutUs = lazy(() => import("./components/AboutUs"));
+const Mission = lazy(() => import("./components/Mission"));
+const Expertise = lazy(() => import("./components/Expertise"));
+const Review = lazy(() => import("./components/Review"));
+const Contact = lazy(() => import("./components/Contact"));
 
 function App() {
   return (
     <main className="overflow-y-hidden text-neutral-200 antialiased">
-      <HeroSection />
       <Navbar />
-      <Dishes />
-      <AboutUs />
-      <Mission />
-      <Expertise />
-      <Review />
-      <Contact />
+      <Suspense fallback={<Loader />}>
+        <HeroSection />
+        <Dishes />
+        <AboutUs />
+        <Mission />
+        <Expertise />
+        <Review />
+        <Contact />
+      </Suspense>
+
       <Footer />
     </main>
   );
