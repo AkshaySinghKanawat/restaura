@@ -1,4 +1,4 @@
-import React from "react";
+
 import { DISHES } from "../constants";
 import DishCard from "./DishCard";
 
